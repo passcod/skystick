@@ -1,8 +1,11 @@
-module slat_hole (offset) {
-    slat_inner_radius = 2;
-    slat_outer_radius = 4;
+module slat_hole (offset, offcenter) {
+    // 3mm holes on PCB
+    slat_inner_radius = 3;
+    // 5mm nuts for M2.5 screws, 5.5mm for M3
+    slat_outer_radius = 6;
+    // just enough to position
     slat_outer_depth = 0.5;
-    translate([offset, 0, 0]) {
+    translate([offset, offcenter, 0]) {
         union() {
             cylinder(4, slat_inner_radius, slat_inner_radius, $fn=100);
             translate([0, 0, -1]) {
@@ -16,17 +19,19 @@ module slat_hole (offset) {
 }
 
 module slat_plank () {
-    translate([-60, -16, 0]) {
-        // from pinetrim 32x40mm, cut longitudinally
-        cube([120, 32, 4]);
+    // from pinetrim ??, cut longitudinally
+    slat_width = 22;
+    slat_length = 120;
+    translate([slat_length / -2, slat_width / -2, 0]) {
+        cube([slat_length, slat_width, 4]);
     }
 }
 
-module slat(hole1 = 20, hole2 = -20) {
+module slat(offcenter = 0, hole_width = 35.40) {
     difference() {
         slat_plank();
-        slat_hole(hole1);
-        slat_hole(hole2);
+        slat_hole(hole_width / 2, offcenter);
+        slat_hole(hole_width / -2, offcenter);
     }
 }
 
