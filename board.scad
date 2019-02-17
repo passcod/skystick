@@ -36,10 +36,17 @@ module board_slot () {
         rotate(-slot_angle) {
             translate([0, slot_gap / 2, 0]) {
                 cube([slat_thickness, slat_width, slot_depth + 1]);
+
+                // Half-rounds on top of the ends of slots (so slats still fit) to ease manufacture
+                for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
+                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 50);
             }
 
             translate([0, (slot_gap / -2) - slat_width, 0]) {
                 cube([slat_thickness, slat_width, slot_depth + 1]);
+
+                for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
+                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 50);
             }
         }
     }
