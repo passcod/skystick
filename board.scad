@@ -82,9 +82,9 @@ module board (length = 900) {
                             0 :
                             slot_effective_length + slot_repeat_gap :
                             length / 2 - slot_offset - slot_effective_length / 2
-                        ]) translate([offset, 0, 0]) board_slot(rounding = false);
+                        ]) translate([offset, 0, 0]) board_slot();
         }
     }
 }
 
-board();
+// board();
