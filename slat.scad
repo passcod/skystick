@@ -19,12 +19,12 @@ module slat_hole (offset, offcenter) {
     outer_radius = slat_outer_diameter / 2;
     translate([offset, offcenter, 0]) {
         union() {
-            cylinder(slat_thickness, inner_radius, inner_radius, $fn=100);
+            cylinder(slat_thickness, inner_radius, inner_radius, $fn=30);
             translate([0, 0, -1]) {
-                cylinder(slat_outer_depth+1, outer_radius, outer_radius, $fn=100);
+                cylinder(slat_outer_depth+1, outer_radius, outer_radius, $fn=30);
             }
             translate([0, 0, slat_thickness - slat_outer_depth]) {
-                cylinder(slat_outer_depth+1, outer_radius, outer_radius, $fn=100);
+                cylinder(slat_outer_depth+1, outer_radius, outer_radius, $fn=30);
             }
         }
     }
