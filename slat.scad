@@ -7,7 +7,7 @@ slat_outer_depth = 0.5;
 
 // from pinetrim ??, cut longitudinally
 slat_width = 22;
-slat_length = 120;
+slat_length = 100;
 slat_thickness = 4;
 
 // the actual length of the slat, taking into account inserts into the board
