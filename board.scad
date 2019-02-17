@@ -75,12 +75,13 @@ module board (length = 900) {
             translate([rod_offset, 0, 0]) board_hole();
             translate([length - rod_offset, 0, 0]) board_hole();
 
-            translate([length / 2, 0, 0]) for (direction = [0 : 1]) rotate(direction * 180)
             translate([(slot_effective_length + slot_repeat_gap) / 2, 0, 0]) {
                 for (offset = [0 : slot_effective_length + slot_repeat_gap : length / 2 - slot_offset - slot_effective_length / 2]) {
                     translate([offset, 0, 0]) board_slot();
                 }
             }
+            translate([length / 2, 0, 0]) for (direction = [0 : 1])
+                translate([0, sin(slot_angle) * (2 * direction - 1) * slat_thickness / -2, 0]) rotate(direction * 180)
         }
     }
 }
