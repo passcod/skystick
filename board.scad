@@ -39,14 +39,14 @@ module board_slot () {
 
                 // Half-rounds on top of the ends of slots (so slats still fit) to ease manufacture
                 for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
-                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 50);
+                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
             }
 
             translate([0, (slot_gap / -2) - slat_width, 0]) {
                 cube([slat_thickness, slat_width, slot_depth + 1]);
 
                 for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
-                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 50);
+                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
             }
         }
     }
@@ -57,11 +57,11 @@ module board_hole () {
     outer_radius = rod_outer_diameter / 2;
 
     translate([0, 0, -1]) {
-        cylinder(rod_outer_depth + 2, outer_radius, outer_radius, $fn = 100);
+        cylinder(rod_outer_depth + 2, outer_radius, outer_radius, $fn = 50);
     }
 
     translate([0, 0, rod_inner_depth - 1]) {
-        cylinder(rod_inner_depth + 2, inner_radius, inner_radius, $fn = 100);
+        cylinder(rod_inner_depth + 2, inner_radius, inner_radius, $fn = 50);
     }
 }
 
