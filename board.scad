@@ -30,7 +30,7 @@ rod_inner_depth = board_thickness - rod_outer_depth;
 // how far the tie rod holes are from the edges
 rod_offset = 30;
 
-module board_slot () {
+module board_slot (rounding = true) {
     slot_depth = board_thickness / 2;
     translate([0, 0, board_thickness - slot_depth]) {
         rotate(-slot_angle) {
@@ -38,14 +38,14 @@ module board_slot () {
                 cube([slat_thickness, slat_width, slot_depth + 1]);
 
                 // Half-rounds on top of the ends of slots (so slats still fit) to ease manufacture
-                for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
+                if(rounding) for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
                     cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
             }
 
             translate([0, (slot_gap / -2) - slat_width, 0]) {
                 cube([slat_thickness, slat_width, slot_depth + 1]);
 
-                for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
+                if(rounding) for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
                     cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
             }
         }
