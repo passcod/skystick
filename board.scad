@@ -32,21 +32,22 @@ rod_offset = 30;
 
 module board_slot (rounding = true) {
     slot_depth = board_thickness / 2;
+    slot_width = slat_thickness + 0.5; // to allow for sliding in
     translate([0, 0, board_thickness - slot_depth]) {
         rotate(-slot_angle) {
             translate([0, slot_gap / 2, 0]) {
-                cube([slat_thickness, slat_width, slot_depth + 1]);
+                cube([slot_width, slat_width, slot_depth + 1]);
 
                 // Half-rounds on top of the ends of slots (so slats still fit) to ease manufacture
-                if(rounding) for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
-                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
+                if(rounding) for(end = [0 : 1]) translate([slot_width / 2, slat_width * end, 0])
+                    cylinder(slot_depth + 1, slot_width / 2, slot_width / 2, $fn = 30);
             }
 
             translate([0, (slot_gap / -2) - slat_width, 0]) {
-                cube([slat_thickness, slat_width, slot_depth + 1]);
+                cube([slot_width, slat_width, slot_depth + 1]);
 
-                if(rounding) for(end = [0 : 1]) translate([slat_thickness / 2, slat_width * end, 0])
-                    cylinder(slot_depth + 1, slat_thickness / 2, slat_thickness / 2, $fn = 30);
+                if(rounding) for(end = [0 : 1]) translate([slot_width / 2, slat_width * end, 0])
+                    cylinder(slot_depth + 1, slot_width / 2, slot_width / 2, $fn = 30);
             }
         }
     }

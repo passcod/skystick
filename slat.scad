@@ -11,7 +11,7 @@ slat_length = 100;
 slat_thickness = 4;
 
 // the actual length of the slat, taking into account inserts into the board
-board_thickness = 0;
+board_thickness = 18;
 slat_outer_length = slat_length + board_thickness;
 
 module slat_hole (offset, offcenter) {
