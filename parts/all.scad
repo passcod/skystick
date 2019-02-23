@@ -2,26 +2,26 @@ use <../minitub.scad>;
 
 plate();
 
-mirror([0, 0, 180]) translate([160, 0, -18])
+mirror([0, 0, 180]) translate([130, 80, -18]) rotate(-90)
     panel_back_inner();
 
-translate([150, 110, 0])
+translate([130, 190, 0]) rotate(-90)
     panel_back_outer();
 
-mirror([0, 0, 180]) translate([280, 0, -18])
+mirror([0, 0, 180]) translate([280, 80, -18]) rotate(-90)
     panel_front_inner();
 
-translate([270, 110, 0])
+translate([280, 190, 0]) rotate(-90)
     panel_front_outer();
 
-translate([0, 220, 0])
+translate([0, 200, 0])
     panel_side_outer();
 
-translate([230, 220, 0])
+translate([230, 200, 0])
     panel_side_inner();
 
-translate([0, 320, 0])
+translate([0, 350, 0])
     panel_side_outer();
 
-translate([230, 320, 0])
+translate([230, 350, 0])
     panel_side_inner();
