@@ -3,13 +3,21 @@
 
 inner_width = 40;
 inner_length = 120;
-inner_height = 50;
+inner_height = 110;
 
 waterline = 20;
 back_flashing_thickness = 5;
 
 // predrill holes diameter
 prehole = 2;
+
+// opening hole diameter
+opening = 16;
+
+// carrier holes diameter and spacings (center to center)
+carrier_hole = 8;
+carrier_width_np2 = 34.5;
+carrier_width_itx = 94;
 
 groove_depth = 9;
 groove_width = 9;
@@ -21,6 +29,9 @@ panel_thickness = groove_depth * 2;
 outer_width = inner_width + panel_thickness * 4;
 outer_length = inner_length + panel_thickness * 4;
 outer_height = inner_height + groove_depth + waterline;
+
+// TODO: eth and power holes in front walls
+// TODO: oil input holes in back walls
 
 module plate () {
     difference() {
@@ -206,6 +217,24 @@ module panel_side_inner () {
             cube([groove_width, outer_height + groove_width, groove_width]);
         translate([panel_length - groove_width, 0, groove_width])
             cube([groove_width, outer_height + groove_width, groove_width]);
+        
+        for (d = [
+            // NEO Plus 2
+            carrier_width_np2 / 2,
+            carrier_width_np2 / -2,
+
+            // pico-ITX for APL1
+            carrier_width_itx / 2,
+            carrier_width_itx / -2
+        ]) translate([
+                panel_length / 2 + d - carrier_hole / 2,
+                outer_height - waterline - carrier_hole * 1.5,
+                panel_thickness / 3
+            ]) {
+                cube([carrier_hole, waterline + carrier_hole * 1.5, panel_thickness * 2 / 3]);
+                translate([carrier_hole / 2, 0, 0])
+                    cylinder(panel_thickness * 2 / 3, carrier_hole / 2, carrier_hole / 2, $fn = 20);
+            }
     }
 }
 
