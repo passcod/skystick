@@ -4,17 +4,21 @@ include <slat.scad>;
 board_thickness = 18;
 board_width = 115;
 
-slot_angle = 45;
+slot_angle = (model == "neo+2") ? 45 :
+    ((model == "pico-itx") ? 27 :
+        45);
 
 // how much space there is between slot pairs and board edge, at minimum
 slot_offset = 80;
 
 // how spaced the slots are, along their axis
-slot_gap = 35.4 - slat_width;
+slot_gap = mach_hole_height - slat_width - slat_offcenter;
 
 // the length taken by a slot pair, along the board's axis
-machine_thickness = 30;
-slot_effective_length = max(machine_thickness, (slat_width * 2 + slot_gap) * sin(slot_angle));
+mach_thickness = (model == "neo+2") ? 30 :
+    ((model == "pico-itx") ? 40 :
+        0);
+slot_effective_length = max(mach_thickness, (slat_width * 2 + slot_gap) * sin(slot_angle));
 
 // how spaced the slot pairs are, along the board's axis
 slot_repeat_gap = 8;
@@ -88,4 +92,4 @@ module board (length = 900) {
     }
 }
 
-// board();
+board();
