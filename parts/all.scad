@@ -1,5 +1,6 @@
 use <../minitub.scad>;
 
+module parts () {
 plate();
 
 mirror([0, 0, 180]) translate([130, 80, -18]) rotate(-90)
@@ -25,3 +26,9 @@ translate([0, 350, 0])
 
 translate([230, 350, 0])
     panel_side_inner();
+}
+
+//projection(cut = true) translate([0,0, -10]) parts();
+//projection(cut = true) translate([0,0, -1]) parts();
+//projection(cut = true) translate([0,0, -16]) parts();
+parts();
